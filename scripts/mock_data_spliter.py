@@ -1,11 +1,12 @@
-from variable_utils import *
-
-from variable_utils import *
+from datetime import datetime, timedelta
+from pathlib import Path
 import os
+import pandas as pd
 
 BASE_DIR = Path.cwd()
 
 MOCK_DATA_PATH = BASE_DIR/f'mock_data/MOCK_DATA.csv'
+DATALAKE_PATH = '/home/leolp/Área de trabalho/Portfolio/datalake'
 
 df = pd.read_csv(MOCK_DATA_PATH)
 
