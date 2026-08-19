@@ -62,7 +62,7 @@ IngestaoBatch/
 ├── scripts/
 │   ├── ingest_source_to_bronze.py   # Lógica de ingestão Source -> Bronze
 │   ├── ingest_bronze_to_silver.py   # Lógica de merge Bronze -> Silver
-│   └── mock_data_spliter.py         # Gera CSVs diários simulados a partir do mock data
+│   └── mock_data_spliter.py         # Divide o csv principal em 10 e adiciona a coluna transaction_date usando Pandas
 ├── mock_data/
 │   └── MOCK_DATA.csv                # Dataset fake de transações
 └── requirements.txt
@@ -77,6 +77,8 @@ IngestaoBatch/
 - Pandas
 
 ## ⚙️ Como rodar
+
+> **Pré-requisito:** o PySpark exige **Java (JDK 8, 11 ou 17)** instalado e a variável de ambiente `JAVA_HOME` configurada, já que o Spark roda sobre a JVM. Certifique-se de que a versão do Java seja compatível com as versões do PySpark e do Delta Lake usadas no projeto.
 
 **1. Clone o repositório e instale as dependências**
 
@@ -111,7 +113,7 @@ python scripts/mock_data_spliter.py
 
 ## 📊 Dados
 
-O `MOCK_DATA.csv` contém transações fictícias com as colunas `transaction_id`, `customer_id` e `amount`, usadas para simular a chegada diária de novos dados no data lake. Os dados mockados foram gerados no ([mockaroo](https://mockaroo.com/))
+O `MOCK_DATA.csv` contém transações fictícias com as colunas `transaction_id`, `customer_id` e `amount`, usadas para simular a chegada diária de novos dados no data lake. Os dados mockados foram gerados no [mockaroo](https://mockaroo.com/)
 
 > **📝 Observação:**
 > - O Airflow deste projeto foi subido em modo **standalone**, já que o repositório tem fins de **estudo e aprendizado**, não havendo necessidade de uma configuração produtiva (executor distribuído, banco de metadados externo, etc.).
